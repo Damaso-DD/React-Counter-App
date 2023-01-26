@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    command: npm start
+    volumes:
+      - ./src:/app/src
+    test:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        volumes:
+          - ./src:/app/src
+        environment:
+          - CI=true
+        command: npm test
+
